@@ -1,29 +1,6 @@
 <template>
 <div>
   <list-item></list-item>
-<!--  <ul class="news-list">-->
-<!--    <li v-for="job in this.$store.state.jobs" v-bind:key="job.title" class="post">-->
-<!--      &lt;!&ndash;        포인트영역&ndash;&gt;-->
-<!--      <div class="points">-->
-<!--        {{ job.points || 0 }}-->
-<!--      </div>-->
-<!--      &lt;!&ndash;        기타정보영역ㅇ&ndash;&gt;-->
-<!--      <div>-->
-<!--        <p class="news-title">-->
-<!--          <a v-bind:href="job.url">-->
-<!--            {{ job.title }}-->
-<!--          </a>-->
-<!--        </p>-->
-<!--        <small class="link-text">-->
-<!--          {{ job.time_ago }}-->
-<!--          by-->
-<!--          <a :href="job.url">-->
-<!--            {{ job.domain }}-->
-<!--          </a>-->
-<!--        </small>-->
-<!--      </div>-->
-<!--    </li>-->
-<!--  </ul>-->
 </div>
 </template>
 
@@ -31,12 +8,24 @@
 
 // import { fetchJobsList } from '@/api/index'
 import ListItem from "@/components/ListItem";
+// import bus from "@/utils/bus";
+
 export default {
   name: "JobsView",
   components: {ListItem},
-  /*created(){
-    this.$store.dispatch('FETCH_JOBS');
-  }*/
+  created(){
+    // bus.$emit('start:spinner');
+    // setTimeout(()=>{
+    //   this.$store.dispatch('FETCH_JOBS')
+    //       .then(() => {
+    //         console.log('fetched');
+    //         bus.$emit('end:spinner');
+    //       })
+    //       .catch((err)=>{
+    //         console.log(err);
+    //       })
+    // },3000);
+  }
 }
 </script>
 

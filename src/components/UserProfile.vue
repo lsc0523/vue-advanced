@@ -2,7 +2,6 @@
 <div>
   <div class="user-container">
     <div>
-      <!--          <i class="fas fa-plus addBtn"></i>-->
       <i class="fas fa-user"></i>
     </div>
     <div class="user-description">
@@ -13,10 +12,10 @@
         <slot name="time">
 
         </slot>
-      </div>
-      <slot name="karma">
+        <slot name="karma">
 
-      </slot>
+        </slot>
+      </div>
     </div>
   </div>
 </div>

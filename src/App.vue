@@ -4,17 +4,42 @@
     <transition name="fade">
       <router-view></router-view>
     </transition>
+    <spinner :loading="LoadingStatus"></spinner>
   </div>
 </template>
 
 <script>
 // import HelloWorld from './components/HelloWorld.vue'
 import ToolBar from "@/components/ToolBar";
+import Spinner from "@/components/Spinner";
+import bus from './utils/bus.js'
 
 export default {
   name: 'App',
   components: {
+    Spinner,
     ToolBar
+  },
+  data(){
+    return{
+      LoadingStatus: false,
+    }
+  },
+  methods:{
+    startSpinner(){
+      this.LoadingStatus = true;
+    },
+    endSpinner(){
+      this.LoadingStatus = false;
+    }
+  },
+  created(){
+    bus.$on('start:spinner', this.startSpinner);
+    bus.$on('end:spinner',this.endSpinner);
+  },
+  beforeDestroy(){
+    bus.$off('start:spinner',this.startSpinner);
+    bus.$off('end:spinner',this.endSpinner);
   }
 }
 </script>

@@ -1,11 +1,11 @@
-import {fetchAskList, fetchCommentItem, fetchJobsList, fetchNewList, fetchUserInfo} from "@/api";
+import {fetchAskList, fetchCommentItem, fetchJobsList, fetchNewList, fetchUserInfo, fetchList} from "@/api";
 
 export default {
     FETCH_NEWS(context) {
         fetchNewList()
-            .then(({data}) => {
-                context.commit('SET_NEWS', data);
-                console.log(data);
+            .then((res) => {
+                context.commit('SET_NEWS', res.data);
+                return res;
             })
             .catch((err) => {
                 console.log(err);
@@ -14,8 +14,9 @@ export default {
 
     FETCH_JOBS({commit}) {
         fetchJobsList()
-            .then(({data}) => {
-                commit('SET_JOBS', data);
+            .then((res) => {
+                commit('SET_JOBS', res.data);
+                return res;
             })
             .catch((err) => {
                 console.log(err);
@@ -23,8 +24,9 @@ export default {
     },
     FETCH_ASKS(context) {
         fetchAskList()
-            .then(({data}) => {
-                context.commit('SET_ASKS', data);
+            .then((res) => {
+                context.commit('SET_ASKS', res.data);
+                return res;
             })
             .catch((err) => {
                 console.log(err);
@@ -49,5 +51,12 @@ export default {
             .catch((err) =>{
                 console.log(err);
             })
-    }
+    },
+    FETCH_LIST({commit},pageName){
+        fetchList(pageName)
+            .then(({data}) => {
+                commit('SET_LIST',data)
+            })
+            .catch((err) => console.log(err))
+    },
 }
