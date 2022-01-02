@@ -15,7 +15,7 @@ export default {
     FETCH_JOBS({commit}) {
         fetchJobsList()
             .then((res) => {
-                commit('SET_JOBS', res.data);
+                commit('SET_LIST', res.data);
                 return res;
             })
             .catch((err) => {
@@ -56,7 +56,7 @@ export default {
         fetchList(pageName)
             .then(({data}) => {
                 commit('SET_LIST',data)
-            })
+    })
             .catch((err) => console.log(err))
     },
 }

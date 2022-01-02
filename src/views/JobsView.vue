@@ -8,24 +8,26 @@
 
 // import { fetchJobsList } from '@/api/index'
 import ListItem from "@/components/ListItem";
+import ListMixin from "@/mixins/ListMixin.js";
 // import bus from "@/utils/bus";
 
 export default {
   name: "JobsView",
   components: {ListItem},
-  created(){
-    // bus.$emit('start:spinner');
-    // setTimeout(()=>{
-    //   this.$store.dispatch('FETCH_JOBS')
-    //       .then(() => {
-    //         console.log('fetched');
-    //         bus.$emit('end:spinner');
-    //       })
-    //       .catch((err)=>{
-    //         console.log(err);
-    //       })
-    // },3000);
-  }
+  mixins: [ListMixin],
+  // created(){
+  //   bus.$emit('start:spinner');
+  //   setTimeout(()=>{
+  //     this.$store.dispatch('FETCH_JOBS')
+  //         .then(() => {
+  //           console.log('fetched');
+  //           bus.$emit('end:spinner');
+  //         })
+  //         .catch((err)=>{
+  //           console.log(err);
+  //         })
+  //   },3000);
+  // }
 }
 </script>
 
