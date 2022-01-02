@@ -8,13 +8,16 @@
 
 // import { fetchJobsList } from '@/api/index'
 import ListItem from "@/components/ListItem";
-import ListMixin from "@/mixins/ListMixin.js";
-// import bus from "@/utils/bus";
+// import ListMixin from "@/mixins/ListMixin.js";
+import bus from "@/utils/bus";
 
 export default {
   name: "JobsView",
   components: {ListItem},
-  mixins: [ListMixin],
+  mounted() {
+    bus.$emit('end:spinner');
+  }
+  // mixins: [ListMixin],
   // created(){
   //   bus.$emit('start:spinner');
   //   setTimeout(()=>{

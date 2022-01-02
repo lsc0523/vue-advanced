@@ -6,6 +6,8 @@ import JobsView from '../views/JobsView'
 import ItemView from "@/views/ItemView";
 import UserView from "@/views/UserView";
 import createListView from '../views/CreateListView.js'
+import bus from "@/utils/bus";
+import { store } from '@/store/index'
 
 Vue.use(VueRouter);
 
@@ -31,7 +33,21 @@ export const router = new VueRouter({
         {
             path: '/jobs',
             name: 'jobs',
-            component: JobsView
+            component: JobsView,
+            beforeEnter: (to, from, next) =>{
+                bus.$emit('start:spinner');
+                setTimeout(()=>{
+                    store.dispatch('FETCH_LIST',to.name)
+                        .then(() => {
+                            console.log('fetched');
+                            // bus.$emit('end:spinner');
+                            next();
+                        })
+                        .catch((err)=>{
+                            console.log(err);
+                        })
+                },3000);
+            }
             // component: createListView('JobsView')
         },
         {
