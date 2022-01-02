@@ -32,32 +32,24 @@ export default {
                 console.log(err);
             })
     },
-    FETCH_USER({ commit }, name) {
-        return fetchUserInfo(name)
-            .then(({data}) => {
-                commit('SET_USER', data);
-                console.log(data);
-            })
-            .catch((err) => {
-                console.log(err);
-            })
+    async FETCH_USER({ commit }, name) {
+        const res = await fetchUserInfo(name);
+        commit('SET_USER',res.data);
+        return res;
+
     },
-    FETCH_ITEM( {commit}, id ){
-        return fetchCommentItem(id)
-            .then(({data})=>{
-                commit('SET_ITEM',data);
-                console.log(data);
-            })
-            .catch((err) =>{
-                console.log(err);
-            })
+    async FETCH_ITEM( {commit}, id ){
+        const res = await fetchCommentItem(id);
+        commit('SET_ITEM',res.data);
+        return res;
     },
-    FETCH_LIST({commit},pageName){
-        return fetchList(pageName)
-            .then(res => {
-                commit('SET_LIST',res.data)
-                return res;
-    })
-            .catch((err) => console.log(err))
+    async FETCH_LIST({commit},pageName){
+        try {
+            const res = await fetchList(pageName);
+            commit('SET_LIST',res.data);
+            return res;
+        }catch(err){
+            console.log(err);
+        }
     },
 }
